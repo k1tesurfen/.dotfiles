@@ -66,8 +66,18 @@ alias la="ls -a"
 alias v="nvim"
 alias gs="git status"
 alias moco="python3 ~/git/moco-cli/app/main.py"
+alias home="cd ~/"
 
 alias mkdirtoday="mkdir $(date +'%d-%m-%Y')"
+
+function f() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 
 function o() {
   local file
@@ -84,7 +94,14 @@ fi
 
 # Homebrew Umgebung
 eval "$(/opt/homebrew/bin/brew shellenv)"
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+
+eval "$(fnm env --use-on-cd)"
 
 
 export PATH="/opt/homebrew/opt/php@8.3/bin:$PATH"
 export PATH="/opt/homebrew/opt/php@8.3/sbin:$PATH"
+
+
+# Ensure /usr/local/bin is in PATH for wolfgang script
+export PATH="/usr/local/bin:$PATH"

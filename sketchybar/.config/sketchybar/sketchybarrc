@@ -1,0 +1,58 @@
+#!/usr/bin/env sh
+
+source "$HOME/.config/sketchybar/colors.sh" # Loads all defined colors
+source "$HOME/.config/sketchybar/icons.sh"  # Loads all defined icons
+
+ITEM_DIR="$HOME/.config/sketchybar/items"     # Directory where the items are configured
+PLUGIN_DIR="$HOME/.config/sketchybar/plugins" # Directory where all the plugin scripts are stored
+
+FONT="Geist MONO" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
+
+PADDINGS=2 # All paddings use this value (icon, label, background)
+
+SHADOW=off
+
+# Setting up the general bar appearance and default values
+sketchybar --bar height=26 \
+  color=$BAR_COLOR \
+  display=all \
+  position=top \
+  topmost=all \
+  sticky=on \
+  font="$FONT:Regular:14.0" \
+  y_offset=0 \
+  blur_radius=8 \
+  corner_radius=0 \
+  margin=10 \
+  padding_left=8 \
+  shadow=off \
+  notch_display_height=26 \
+  \
+  --default updates=when_shown \
+  \
+  icon.color=$ICON_COLOR \
+  icon.padding_left=0 \
+  icon.padding_right=0 \
+  icon.width=0 \
+  label.font="$FONT:Semibold:14.0" \
+  label.color=$LABEL_COLOR \
+  label.padding_left=0 \
+  label.padding_right=$PADDINGS \
+  label.padding_top=0 \
+  label.padding_bottom=0 \
+  background.padding_right=0 \
+  background.padding_left=0 \
+  background.margin=0 \
+  background.padding=0
+
+#sketchybar --add event aerospace_workspace_change
+# Left
+#aerospace included
+source "$ITEM_DIR/spaces.sh"
+
+source "$ITEM_DIR/time.sh"
+
+############## FINALIZING THE SETUP ##############
+sketchybar --update
+
+echo "sketchybar configuation loaded.."

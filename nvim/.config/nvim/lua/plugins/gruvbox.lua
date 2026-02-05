@@ -6,11 +6,10 @@ return {
     config = function()
       -- Option: Set the background type (hard, medium, soft)
       vim.g.gruvbox_material_background = "soft"
-
       -- Option: Enable better performance
-      vim.g.gruvbox_material_better_performance = 1
-      vim.g.gruvbox_material_transparent_background = 1
-
+      vim.g.gruvbox_material_better_performance = true
+      vim.g.gruvbox_material_transparent_background = true
+      vim.g.gruvbox_material_enable_italic = true
       -- Load the colorscheme
       vim.cmd.colorscheme("gruvbox-material")
     end,
