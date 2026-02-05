@@ -1,3 +1,7 @@
+# Dotfiles
+
+![Screenshot](./Screenshot.png)
+
 ## MacOS commands useful
 
 ### Disable window animations
