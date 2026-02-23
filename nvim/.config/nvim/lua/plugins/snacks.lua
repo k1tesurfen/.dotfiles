@@ -9,10 +9,15 @@ return {
     opts.picker.sources = opts.picker.sources or {}
     opts.picker.sources.explorer = opts.picker.sources.explorer or {}
     opts.picker.sources.explorer.title = ""
-    opts.picker.sources.explorer.hidden = true
-    opts.picker.sources.explorer.layout = opts.picker.sources.explorer.layout or {}
-    opts.picker.sources.explorer.layout.layout = opts.picker.sources.explorer.layout.layout or {}
-    opts.picker.sources.explorer.layout.layout.width = 40
+
+    local explorer = opts.picker.sources.explorer
+    explorer.hidden = true -- show dotfiles
+    explorer.ignored = true -- show gitignored files (like node_modules)
+    explorer.exclude = {} -- ensure nothing is manually excluded
+
+    explorer.layout = explorer.layout or {}
+    explorer.layout.layout = explorer.layout.layout or {}
+    explorer.layout.layout.width = 40
 
     opts.image = opts.image or {}
     opts.image.enabled = true
